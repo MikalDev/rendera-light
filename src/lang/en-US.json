@@ -1,0 +1,246 @@
+﻿{
+	"$schema": "../../plugin.lang.schema.json",
+
+	"languageTag": "en-US",
+	"fileDescription": "Strings for Rendera Light.",
+	"text": {
+		"plugins": {
+			"renderalight": {
+				"name": "Rendera Light",
+				"description": "Control lights in Rendera 3D rendering engine from Construct 3.",
+				"help-url": "https://www.construct.net",
+				"properties": {
+					"light-type": {
+						"name": "Light type",
+						"desc": "Type of light source (point, directional, or spot).",
+						"items": {
+							"point": "Point",
+							"directional": "Directional",
+							"spot": "Spot"
+						}
+					},
+					"light-index": {
+						"name": "Light index",
+						"desc": "Index of the light in the Rendera lighting system (0-7)."
+					},
+					"enabled": {
+						"name": "Enabled",
+						"desc": "Whether the light is enabled and affects the scene."
+					},
+					"color": {
+						"name": "Color",
+						"desc": "RGB color of the light."
+					},
+					"intensity": {
+						"name": "Intensity",
+						"desc": "Brightness multiplier of the light."
+					},
+					"cast-shadows": {
+						"name": "Cast shadows",
+						"desc": "Whether this light casts shadows."
+					},
+					"attenuation": {
+						"name": "Attenuation",
+						"desc": "Distance falloff factor for point and spot lights."
+					},
+					"direction-x": {
+						"name": "Direction X",
+						"desc": "X component of light direction (for directional and spot lights)."
+					},
+					"direction-y": {
+						"name": "Direction Y",
+						"desc": "Y component of light direction (for directional and spot lights)."
+					},
+					"direction-z": {
+						"name": "Direction Z",
+						"desc": "Z component of light direction (for directional and spot lights)."
+					},
+					"spot-angle": {
+						"name": "Spot angle",
+						"desc": "Cone angle in degrees for spot lights."
+					},
+					"spot-penumbra": {
+						"name": "Spot penumbra",
+						"desc": "Soft edge falloff factor for spot lights (0-1)."
+					}
+				},
+				"aceCategories": {
+					"custom": "Light"
+				},
+				"actions": {
+					"set-all-properties": {
+						"list-name": "Set all properties",
+						"display-text": "Set light: enabled=[i]{0}[/i], RGB([i]{1}[/i],[i]{2}[/i],[i]{3}[/i]), intensity=[i]{4}[/i], shadows=[i]{5}[/i], pos([i]{6}[/i],[i]{7}[/i],[i]{8}[/i]), dir([i]{9}[/i],[i]{10}[/i],[i]{11}[/i]), atten=[i]{12}[/i], angle=[i]{13}[/i], penumbra=[i]{14}[/i]",
+						"description": "Set all light properties at once.",
+						"params": {
+							"enabled": {
+								"name": "Enabled",
+								"desc": "Whether the light is enabled."
+							},
+							"red": {
+								"name": "Red",
+								"desc": "Red component (0-1)."
+							},
+							"green": {
+								"name": "Green",
+								"desc": "Green component (0-1)."
+							},
+							"blue": {
+								"name": "Blue",
+								"desc": "Blue component (0-1)."
+							},
+							"intensity": {
+								"name": "Intensity",
+								"desc": "Light intensity multiplier."
+							},
+							"cast-shadows": {
+								"name": "Cast shadows",
+								"desc": "Whether the light casts shadows."
+							},
+							"pos-x": {
+								"name": "Position X",
+								"desc": "X position coordinate."
+							},
+							"pos-y": {
+								"name": "Position Y",
+								"desc": "Y position coordinate."
+							},
+							"pos-z": {
+								"name": "Position Z",
+								"desc": "Z position coordinate."
+							},
+							"dir-x": {
+								"name": "Direction X",
+								"desc": "X direction component."
+							},
+							"dir-y": {
+								"name": "Direction Y",
+								"desc": "Y direction component."
+							},
+							"dir-z": {
+								"name": "Direction Z",
+								"desc": "Z direction component."
+							},
+							"attenuation": {
+								"name": "Attenuation",
+								"desc": "Distance falloff factor."
+							},
+							"spot-angle": {
+								"name": "Spot angle",
+								"desc": "Cone angle in degrees (for spot lights)."
+							},
+							"spot-penumbra": {
+								"name": "Spot penumbra",
+								"desc": "Soft edge falloff (0-1, for spot lights)."
+							}
+						}
+					},
+					"set-enabled": {
+						"list-name": "Set enabled",
+						"display-text": "Set light enabled to [i]{0}[/i]",
+						"description": "Enable or disable the light.",
+						"params": {
+							"enabled": {
+								"name": "Enabled",
+								"desc": "Whether the light is enabled."
+							}
+						}
+					},
+					"set-color": {
+						"list-name": "Set color",
+						"display-text": "Set light color to RGB([i]{0}[/i], [i]{1}[/i], [i]{2}[/i])",
+						"description": "Set the RGB color of the light (0-1 range).",
+						"params": {
+							"red": {
+								"name": "Red",
+								"desc": "Red component (0-1)."
+							},
+							"green": {
+								"name": "Green",
+								"desc": "Green component (0-1)."
+							},
+							"blue": {
+								"name": "Blue",
+								"desc": "Blue component (0-1)."
+							}
+						}
+					},
+					"set-intensity": {
+						"list-name": "Set intensity",
+						"display-text": "Set light intensity to [i]{0}[/i]",
+						"description": "Set the brightness intensity of the light.",
+						"params": {
+							"intensity": {
+								"name": "Intensity",
+								"desc": "Light intensity multiplier."
+							}
+						}
+					},
+					"set-cast-shadows": {
+						"list-name": "Set cast shadows",
+						"display-text": "Set light cast shadows to [i]{0}[/i]",
+						"description": "Enable or disable shadow casting for this light.",
+						"params": {
+							"cast-shadows": {
+								"name": "Cast shadows",
+								"desc": "Whether the light casts shadows."
+							}
+						}
+					},
+					"set-direction": {
+						"list-name": "Set direction",
+						"display-text": "Set light direction to ([i]{0}[/i], [i]{1}[/i], [i]{2}[/i])",
+						"description": "Set the direction vector of the light (for directional and spot lights).",
+						"params": {
+							"x": {
+								"name": "X",
+								"desc": "X component of direction vector."
+							},
+							"y": {
+								"name": "Y",
+								"desc": "Y component of direction vector."
+							},
+							"z": {
+								"name": "Z",
+								"desc": "Z component of direction vector."
+							}
+						}
+					},
+					"set-attenuation": {
+						"list-name": "Set attenuation",
+						"display-text": "Set light attenuation to [i]{0}[/i]",
+						"description": "Set the distance falloff factor (for point and spot lights).",
+						"params": {
+							"attenuation": {
+								"name": "Attenuation",
+								"desc": "Distance falloff factor."
+							}
+						}
+					},
+					"set-spot-angle": {
+						"list-name": "Set spot angle",
+						"display-text": "Set spot light angle to [i]{0}[/i]°",
+						"description": "Set the cone angle in degrees (for spot lights).",
+						"params": {
+							"angle": {
+								"name": "Angle",
+								"desc": "Cone angle in degrees."
+							}
+						}
+					},
+					"set-spot-penumbra": {
+						"list-name": "Set spot penumbra",
+						"display-text": "Set spot light penumbra to [i]{0}[/i]",
+						"description": "Set the soft edge falloff (for spot lights).",
+						"params": {
+							"penumbra": {
+								"name": "Penumbra",
+								"desc": "Soft edge falloff (0-1)."
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
