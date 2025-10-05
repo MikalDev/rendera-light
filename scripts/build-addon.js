@@ -5,10 +5,12 @@ const archiver = require('archiver');
 // Read addon.json to get version
 const addonJsonPath = path.join(__dirname, '..', 'src', 'addon.json');
 const addonJson = JSON.parse(fs.readFileSync(addonJsonPath, 'utf8'));
-const version = addonJson.version;
+let version = addonJson.version;
+version = version.replace(/\.(?=[^.]*$)/, '-'); // Replace all but last dot with hyphen
+
 
 // Create output filename with version
-const outputFileName = `rendera-control-${version}.c3addon`;
+const outputFileName = `rendera-light-${version}.c3addon`;
 const outputPath = path.join(__dirname, '..', 'dist', outputFileName);
 
 // Ensure dist directory exists

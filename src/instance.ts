@@ -7,6 +7,7 @@ class RenderaLightInstance extends SDK.IWorldInstanceBase
 {
 	private _lightIndex: number = 0;
 	private _lightType: string = "point";
+	private _debugLight: boolean = false;
 
 	constructor(sdkType: SDK.ITypeBase, inst: SDK.IWorldInstance)
 	{
@@ -23,6 +24,7 @@ class RenderaLightInstance extends SDK.IWorldInstanceBase
 		// Get initial light properties
 		this._lightIndex = this._inst.GetPropertyValue("light-index") as number;
 		this._lightType = this._inst.GetPropertyValue("light-type") as string;
+		this._debugLight = this._inst.GetPropertyValue("debug-light") as boolean;
 	}
 
 	OnPlacedInLayout()
@@ -33,39 +35,28 @@ class RenderaLightInstance extends SDK.IWorldInstanceBase
 
 	Draw(iRenderer: SDK.Gfx.IWebGLRenderer, iDrawParams: SDK.Gfx.IDrawParams)
 	{
-		const texture = this.GetTexture();
+		// Only draw debug visualization if enabled
+		if (!this._debugLight)
+			return;
 
-		if (texture)
-		{
-			// Draw light bulb icon
-			this._inst.ApplyBlendMode(iRenderer);
-			iRenderer.SetTexture(texture);
-			iRenderer.SetColor(this._inst.GetColor());
-			iRenderer.Quad3(this._inst.GetQuad(), this.GetTexRect());
-		}
-		else
-		{
-			// Render placeholder with color based on light type
-			iRenderer.SetAlphaBlend();
-			iRenderer.SetColorFillMode();
+		// Draw a 25x25 quad centered at the instance position
+		const size = 25;
+		const halfSize = size / 2;
 
-			if (this.HadTextureError())
-			{
-				iRenderer.SetColorRgba(0.25, 0, 0, 0.25);
-			}
-			else
-			{
-				// Color based on light type
-				if (this._lightType === "point")
-					iRenderer.SetColorRgba(1, 1, 0, 0.5); // Yellow for point lights
-				else if (this._lightType === "directional")
-					iRenderer.SetColorRgba(1, 0.5, 0, 0.5); // Orange for directional lights
-				else if (this._lightType === "spot")
-					iRenderer.SetColorRgba(1, 0, 1, 0.5); // Magenta for spot lights
-			}
+		const x = this._inst.GetX();
+		const y = this._inst.GetY();
 
-			iRenderer.Quad(this._inst.GetQuad());
-		}
+		const quad = new SDK.Quad(
+			x - halfSize, y - halfSize,  // top-left
+			x + halfSize, y - halfSize,  // top-right
+			x + halfSize, y + halfSize,  // bottom-right
+			x - halfSize, y + halfSize   // bottom-left
+		);
+
+		// Set solid color fill mode and draw quad with instance color
+		iRenderer.SetColorFillMode();
+		iRenderer.SetColor(this._inst.GetColor());
+		iRenderer.Quad(quad);
 	}
 
 	GetTexture()
@@ -114,6 +105,10 @@ class RenderaLightInstance extends SDK.IWorldInstanceBase
 		else if (id === "light-index")
 		{
 			this._lightIndex = value as number;
+		}
+		else if (id === "debug-light")
+		{
+			this._debugLight = value as boolean;
 		}
 	}
 

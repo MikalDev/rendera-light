@@ -62,6 +62,10 @@
 					"spot-penumbra": {
 						"name": "Spot penumbra",
 						"desc": "Soft edge falloff factor for spot lights (0-1)."
+					},
+					"debug-light": {
+						"name": "Debug light",
+						"desc": "Show debug visualization for the light position."
 					}
 				},
 				"aceCategories": {

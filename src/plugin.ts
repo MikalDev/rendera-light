@@ -41,7 +41,7 @@ const PLUGIN_CLASS = SDK.Plugins.renderaLight = class RenderaLightPlugin extends
 		this._info.SetSupportsZElevation(true);	// support z-elevation for 3D positioning
 		this._info.SetHasImage(true);			// has icon image for editor visualization
 		this._info.SetSupportsEffects(false);		// lights don't need effects
-		this._info.SetSupportsColor(false);		// color is set via light properties, not C3 color
+		this._info.SetSupportsColor(true);
 		this._info.SetMustPreDraw(false);
 		this._info.SetRuntimeModuleMainScript("c3runtime/main.js");
 		
@@ -79,7 +79,10 @@ const PLUGIN_CLASS = SDK.Plugins.renderaLight = class RenderaLightPlugin extends
 
 			/* --- Spot Light Properties --------------------------------- */
 			new SDK.PluginProperty("float", "spot-angle", { interpolatable: true, initialValue: 45 }),
-			new SDK.PluginProperty("float", "spot-penumbra", { interpolatable: true, initialValue: 0.1 })
+			new SDK.PluginProperty("float", "spot-penumbra", { interpolatable: true, initialValue: 0.1 }),
+
+			/* --- Debug ------------------------------------------------- */
+			new SDK.PluginProperty("check", "debug-light", false)
 		]);
 		
 		SDK.Lang.PopContext();		// .properties
